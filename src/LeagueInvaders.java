@@ -16,6 +16,7 @@ public LeagueInvaders() {
 	li.setup();
 }
 	public void setup() {
+		jf.addKeyListener(gp);
 	jf.add(gp);	
 		jf.setSize(WIDTH, HEIGHT);
 		jf.setVisible(true);
