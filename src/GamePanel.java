@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    final int GAME = 1;
 	    final int END = 2;
 	    int currentState = MENU;
+	   RocketShip rs = new RocketShip(250,700,50,50);
 	   Timer frameDraw;
 	    
 	    
@@ -43,6 +44,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    void drawGameState(Graphics g) {
 	    	g.setColor(Color.BLACK);
 	    g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+	    rs.draw(g);
+	    
 	    }
 	    void drawEndState(Graphics g)  {  
 	    	
@@ -82,29 +85,72 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    } else {
 		        currentState++;
 		    }
-		}   if (e.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
-		}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("Down");
-		}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("left");
 		}
-		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("right");
+		    if (e.getKeyCode()==KeyEvent.VK_UP) {
+			    System.out.println("UP");
+			    if(rs.y>=14) {
+			    rs.up();
+			    }
+			}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+			    System.out.println("Down");
+			    if(rs.y<725) {
+				    rs.down();
+				    }
+			}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+			    System.out.println("left");
+			    if(rs.x>20) {
+				    rs.left();
+				    }
+			}
+			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			    System.out.println("right");
+			    if(rs.x<450) {
+				    rs.right();
+				    }
+			}
 		}
 
 
 
-	}
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		//if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+		  //  System.out.println(currentState);
+		 //   if (currentState == END) {
+		   //     currentState = MENU;
+		  //  } else {
+		  //      currentState++;
+		   // }
+	//	}   
+		if (e.getKeyCode()==KeyEvent.VK_UP) {
+		    System.out.println("UP");
+		    if(rs.y>=14) {
+		    rs.up();
+		    }
+		}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+		    System.out.println("Down");
+		    if(rs.y<725) {
+			    rs.down();
+			    }
+		}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+		    System.out.println("left");
+		    if(rs.x>20) {
+			    rs.left();
+			    }
+		}
+		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		    System.out.println("right");
+		    if(rs.x<450) {
+			    rs.right();
+			    }
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("action");
+		
 		repaint();
 		if(currentState == MENU){
 		    updateMenuState();
