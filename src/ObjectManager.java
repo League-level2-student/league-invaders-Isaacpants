@@ -7,7 +7,6 @@ public class ObjectManager {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random r = new Random();
-//YOU ARE ON 7 in the MODEL MANAGMENT!!!!!!!!!!!!!!!!!
 	public ObjectManager(RocketShip rs) {
 
 		this.rs = rs;
@@ -47,6 +46,20 @@ for(Projectile p : projectiles) {
 		for(Projectile p : projectiles) {
 			p.draw(g);
 		}
+	}void purgeObjects(){
+		for (int i = 0; i < aliens.size(); i++) {
+			if(aliens.get(i).isActive==false) {
+				aliens.remove(i);
+				
+			}	
+			
+		}for (int i = 0; i < projectiles.size(); i++) {
+			if(projectiles.get(i).isActive==false) {
+				projectiles.remove(i);
+				
+			}
+		
 	}
 
+}
 }

@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -16,9 +19,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    final int GAME = 1;
 	    final int END = 2;
 	    int currentState = MENU;
+	    public static BufferedImage image;
+	  
 	   RocketShip rs = new RocketShip(250,700,50,50);
 	   Timer frameDraw;
-	    
+	    ObjectManager om = new ObjectManager(rs);
 	    
 	    public GamePanel() {
 	    	 titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -27,7 +32,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    	    frameDraw.start();
 		}
 		void updateMenuState() {  }
-	    void updateGameState() {  }
+	    void updateGameState() { 
+	    	
+	    	om.update();
+	    	
+	    }
 	    void updateEndState()  {  }
 	    void drawMenuState(Graphics g) { 
 	    	
@@ -42,13 +51,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 
 	    }
 	    void drawGameState(Graphics g) {
-	    	g.setColor(Color.BLACK);
-	    g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-	    rs.draw(g);
+	    	  try {
+				image = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	   
 	    
+	    	  g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+	    	  om.draw(g);
 	    }
 	    void drawEndState(Graphics g)  {  
-	    	
+	    	g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 	      	g.setColor(Color.RED);
 		    g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT); 
 		    g.setFont(titleFont);
