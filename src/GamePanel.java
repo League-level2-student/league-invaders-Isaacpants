@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  
 	   RocketShip rs = new RocketShip(250,700,50,50);
 	   Timer frameDraw;
+	   Timer alienSpawn;
 	    ObjectManager om = new ObjectManager(rs);
 	    
 	    public GamePanel() {

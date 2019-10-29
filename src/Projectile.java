@@ -18,8 +18,8 @@ public class Projectile extends GameObject{
 	}void update() {
 		y-=speed;
 	}void draw(Graphics g){
-		g.setColor(Color.RED);
-	    g.fillRect(x, y, width, height);
+		//g.setColor(Color.RED);
+	   // g.fillRect(x, y, width, height);
 	    if (gotImage) {
 	    	g.drawImage(image, x, y, width, height, null);
 	    } else {
