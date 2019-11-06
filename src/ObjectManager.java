@@ -47,6 +47,7 @@ for(Projectile p : projectiles) {
 		}
 		for(Projectile p : projectiles) {
 			p.draw(g);
+			System.out.println("hello");
 		}
 	}void purgeObjects(){
 		for (int i = 0; i < aliens.size(); i++) {
@@ -62,8 +63,7 @@ for(Projectile p : projectiles) {
 			}
 		
 	}
-
-}
+		}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -72,3 +72,6 @@ for(Projectile p : projectiles) {
 		System.out.println("hi");
 	}
 }
+
+	
+	

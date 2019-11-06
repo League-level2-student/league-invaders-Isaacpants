@@ -31,6 +31,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    	 titleFont2 = new Font("Arial", Font.PLAIN, 24);
 	    	   frameDraw = new Timer(1000/60,this);
 	    	    frameDraw.start();
+		}void startGame(){
+			   alienSpawn = new Timer(1000 , om);
+			    alienSpawn.start();	
 		}
 		void updateMenuState() {  }
 	    void updateGameState() { 
@@ -94,12 +97,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+	
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    System.out.println(currentState);
 		    if (currentState == END) {
 		        currentState = MENU;
-		    } else {
+		    }else  if (currentState == END) {
+		       alienSpawn.stop();
+		    }else {
 		        currentState++;
+		        startGame();
 		    }
 		}
 		    if (e.getKeyCode()==KeyEvent.VK_UP) {
