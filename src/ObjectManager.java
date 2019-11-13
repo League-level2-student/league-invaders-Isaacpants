@@ -38,7 +38,9 @@ for(Projectile p : projectiles) {
 	}
 }
 	}
-
+void checkCollision() {
+	
+}
 	void draw(Graphics g) {
 		
 		rs.draw(g);
@@ -47,7 +49,7 @@ for(Projectile p : projectiles) {
 		}
 		for(Projectile p : projectiles) {
 			p.draw(g);
-			System.out.println("hello");
+			
 		}
 	}void purgeObjects(){
 		for (int i = 0; i < aliens.size(); i++) {
@@ -69,7 +71,7 @@ for(Projectile p : projectiles) {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		addAlien();
-		System.out.println("hi");
+
 	}
 }
 

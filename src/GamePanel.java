@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    void updateGameState() { 
 	    	
 	    	om.update();
+	    
 	    	
 	    }
 	    void updateEndState()  {  }
@@ -102,34 +103,37 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    System.out.println(currentState);
 		    if (currentState == END) {
 		        currentState = MENU;
+		        alienSpawn.stop();
 		    }else  if (currentState == END) {
-		       alienSpawn.stop();
+		    	 
 		    }else {
 		        currentState++;
 		        startGame();
 		    }
 		}
 		    if (e.getKeyCode()==KeyEvent.VK_UP) {
-			    System.out.println("UP");
+			   
 			    if(rs.y>=14) {
 			    rs.up();
 			    }
 			}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-			    System.out.println("Down");
+			
 			    if(rs.y<725) {
 				    rs.down();
 				    }
 			}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-			    System.out.println("left");
+			    
 			    if(rs.x>20) {
 				    rs.left();
 				    }
 			}
 			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-			    System.out.println("right");
+			  
 			    if(rs.x<450) {
 				    rs.right();
 				    }
+			}if(e.getKeyCode()==KeyEvent.VK_SPACE && currentState==GAME) {
+				om.addProjectile(rs.getProjectile());
 			}
 		}
 
@@ -148,23 +152,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		   // }
 	//	}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
+		  
 		    if(rs.y>=14) {
 		    rs.up();
 		    }
 		}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("Down");
+		 
 		    if(rs.y<725) {
 			    rs.down();
 			    }
 		}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("left");
+		
 		    if(rs.x>20) {
 			    rs.left();
 			    }
 		}
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("right");
+		
 		    if(rs.x<450) {
 			    rs.right();
 			    }
@@ -179,6 +183,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    updateMenuState();
 		}else if(currentState == GAME){
 		    updateGameState();
+			
 		}else if(currentState == END){
 		    updateEndState();
 		}
