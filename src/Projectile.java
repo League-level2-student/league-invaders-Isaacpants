@@ -16,8 +16,9 @@ public class Projectile extends GameObject{
 		}
 
 	}void update() {
-		y-=speed;
 		super.update();
+		y-=speed;
+		
 
 	}void draw(Graphics g){
 		//g.setColor(Color.RED);

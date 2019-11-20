@@ -37,9 +37,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}
 		void updateMenuState() {  }
 	    void updateGameState() { 
-	    	
+	    	rs.update();
 	    	om.update();
-	    
+	    if(rs.isActive==false) {
+	    	currentState=END;
+	    }
 	    	
 	    }
 	    void updateEndState()  {  }
@@ -68,6 +70,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    	  om.draw(g);
 	    }
 	    void drawEndState(Graphics g)  {  
+	    	
 	    	g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 	      	g.setColor(Color.RED);
 		    g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT); 
@@ -75,7 +78,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    g.setColor(Color.BLACK);
 		    g.drawString("GAME OVER", 100, 150);
 		    g.setFont(titleFont2);
-		    g.drawString("You Killed "+ " "+" enemies",125, 350);
+		    g.drawString("You Killed "+  om.getScore() +" enemies",125, 350);
 		    g.drawString("Press ENTER to Restart",115, 550);
 	    	
 	    }
@@ -101,6 +104,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    System.out.println(currentState);
+		    if(currentState==END) {
+		    	rs=new RocketShip(250,700,50,50);
+		    	om=new ObjectManager(rs);
+		    }
 		    if (currentState == END) {
 		        currentState = MENU;
 		        alienSpawn.stop();
@@ -112,26 +119,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    }
 		}
 		    if (e.getKeyCode()==KeyEvent.VK_UP) {
-			   
-			    if(rs.y>=14) {
-			    rs.up();
-			    }
+			   rs.UP=true;
+			
 			}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
 			
-			    if(rs.y<725) {
-				    rs.down();
-				    }
+			  rs.DOWN=true;
 			}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-			    
-			    if(rs.x>20) {
-				    rs.left();
-				    }
+			    rs.LEFT=true;
+			  
 			}
 			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			  rs.RIGHT=true;
 			  
-			    if(rs.x<450) {
-				    rs.right();
-				    }
 			}if(e.getKeyCode()==KeyEvent.VK_SPACE && currentState==GAME) {
 				om.addProjectile(rs.getProjectile());
 			}
@@ -142,37 +141,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		//if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-		  //  System.out.println(currentState);
-		 //   if (currentState == END) {
-		   //     currentState = MENU;
-		  //  } else {
-		  //      currentState++;
-		   // }
-	//	}   
-		if (e.getKeyCode()==KeyEvent.VK_UP) {
-		  
-		    if(rs.y>=14) {
-		    rs.up();
-		    }
-		}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		 
-		    if(rs.y<725) {
-			    rs.down();
-			    }
-		}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		
-		    if(rs.x>20) {
-			    rs.left();
-			    }
-		}
-		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		
-		    if(rs.x<450) {
-			    rs.right();
-			    }
-		}
+
+		 if (e.getKeyCode()==KeyEvent.VK_UP) {
+			   rs.UP=false;
+			
+			}if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+			
+			  rs.DOWN=false;
+			}if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+			    rs.LEFT=false;
+			  
+			}
+			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			  rs.RIGHT=false;
+			 
+			}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

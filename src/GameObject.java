@@ -8,13 +8,7 @@ public class GameObject {
 	int speed = 0;
 	boolean isActive = true;
 Rectangle collisionBox;
-	public GameObject(Rectangle collisionBox) {
 
-}
-
-	public GameObject() {
-	
-}
 
 	public GameObject(int x, int y, int width, int height) {
 
@@ -22,7 +16,7 @@ Rectangle collisionBox;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-
+		collisionBox = new Rectangle(x,y,width,height);
 	}
 
 	void update() {
