@@ -9,12 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{ 
 	Font titleFont;
 	Font titleFont2;
+	Font scoreTitle;
 	 final int MENU = 0;
 	    final int GAME = 1;
 	    final int END = 2;
@@ -26,19 +29,38 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	   Timer alienSpawn;
 	    ObjectManager om = new ObjectManager(rs);
 	    
+	    JLabel jl = new JLabel();
 	    public GamePanel() {
 	    	 titleFont = new Font("Arial", Font.PLAIN, 48);
 	    	 titleFont2 = new Font("Arial", Font.PLAIN, 24);
+	    	 scoreTitle = new Font("Arial", Font.PLAIN, 25);
 	    	   frameDraw = new Timer(1000/60,this);
 	    	    frameDraw.start();
 		}void startGame(){
-			   alienSpawn = new Timer(1000 , om);
-			    alienSpawn.start();	
+			   
+//			    if(om.score >= 2) {
+//			    	alienSpawn = new Timer(1000 , om);
+//				    alienSpawn.start();	
+//				    
+//			    }
+//			    else {
+			    	alienSpawn = new Timer(1000 , om);
+				    alienSpawn.start();	
+				  
+			   // }
 		}
 		void updateMenuState() {  }
 	    void updateGameState() { 
 	    	rs.update();
 	    	om.update();
+	    	if(om.getScore()%5==0) {
+	    		int num = om.score *10;
+	    		if(num<1000) {
+	    			alienSpawn.setDelay(1000-(om.score*10));
+	    		}
+	    		
+	    		
+	    	}
 	    if(rs.isActive==false) {
 	    	currentState=END;
 	    }
@@ -67,7 +89,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	   
 	    
 	    	  g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
-	    	  om.draw(g);
+	    	 
+	    	  
+	    	  g.setFont(scoreTitle);
+	    	  g.setColor(Color.WHITE);
+	    	g.drawString("score = "+om.getScore(), 0, 750);
+	    	 om.draw(g);
 	    }
 	    void drawEndState(Graphics g)  {  
 	    	
