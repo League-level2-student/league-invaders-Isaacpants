@@ -12,9 +12,12 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random r = new Random();
 	int score = 0;
+	int lives = 50;
 
 	public int getScore() {
 		return score;
+	}public int getLives() {
+		return lives;
 	}
 
 	public ObjectManager(RocketShip rs) {
@@ -37,6 +40,8 @@ public class ObjectManager implements ActionListener {
 		for (Alien a : aliens) {
 			a.update();
 			if (a.y > LeagueInvaders.HEIGHT) {
+				System.out.println(lives);
+				lives-=1;
 				a.isActive = false;
 			}
 		}
@@ -61,7 +66,7 @@ public class ObjectManager implements ActionListener {
 			if (rs.collisionBox.intersects(a.collisionBox)) {
 				rs.isActive = false;
 				a.isActive = false;
-				System.out.println("HI");
+				//System.out.println("HI");
 			}
 			for (Projectile p : projectiles) {
 				if (p.collisionBox.intersects(a.collisionBox)) {
