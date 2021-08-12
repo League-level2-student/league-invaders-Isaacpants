@@ -11,7 +11,7 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random r = new Random();
-	int score = 0;
+	public static int score = 0;
 	int lives = 50;
 
 	public int getScore() {

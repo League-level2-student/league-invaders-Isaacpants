@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont;
 	Font titleFont2;
 	Font scoreTitle;
+	public static int projectileNum = 0;
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
@@ -59,6 +60,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		rs.update();
 		om.update();
+		
 		if(om.getLives()<=0) {
 			currentState = END;
 		}
@@ -144,7 +146,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		
+		if (e.getKeyCode() == KeyEvent.VK_0) {
+		System.out.println("works");
+		projectileNum = 0;
+		}
+	if (e.getKeyCode() == KeyEvent.VK_1) {
+	System.out.println("works");
+	projectileNum=1;
+	}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			System.out.println(currentState);
 			if (currentState == END) {

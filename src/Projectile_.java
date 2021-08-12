@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class Projectile_ extends GameObject{
-
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	

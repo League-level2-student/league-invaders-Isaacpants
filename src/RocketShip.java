@@ -12,6 +12,7 @@ public class RocketShip extends GameObject {
 	boolean RIGHT = false;
 	boolean LEFT = false;
 	boolean DOWN = false;
+
 	public RocketShip(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		speed = 10;
@@ -22,20 +23,20 @@ public class RocketShip extends GameObject {
 	}
 
 	void update() {
-super.update();
-if(UP) {
-	up();
-	
-}
-if(RIGHT) {
-	right();
-}
-if(LEFT) {
-	left();
-}
-if(DOWN) {
-	down();
-}
+		super.update();
+		if (UP) {
+			up();
+
+		}
+		if (RIGHT) {
+			right();
+		}
+		if (LEFT) {
+			left();
+		}
+		if (DOWN) {
+			down();
+		}
 	}
 
 	void draw(Graphics g) {
@@ -51,30 +52,30 @@ if(DOWN) {
 
 	public void right() {
 
-		  if(x<450) {
-				x += speed;
-			    }
+		if (x < 450) {
+			x += speed;
+		}
 	}
 
 	public void up() {
-		
-	    if(y>=14) {
-		    y-=speed;
-		    }
+
+		if (y >= 14) {
+			y -= speed;
+		}
 	}
 
 	public void down() {
-	
-		   if(y<725) {
-				y += speed;
-			    }
+
+		if (y < 725) {
+			y += speed;
+		}
 	}
 
 	public void left() {
-		
-		  if(x>20) {
-			  x -= speed;
-			    }
+
+		if (x > 20) {
+			x -= speed;
+		}
 	}
 
 	void loadImage(String imageFile) {
@@ -90,6 +91,13 @@ if(DOWN) {
 	}
 
 	public Projectile getProjectile() {
+		if (ObjectManager.score >= 100) {
+			if (GamePanel.projectileNum == 0) {
+				return new Projectile(x + width / 2, y, 20, 20);
+			} else {
+				return new Projectile(x + width / 2, y, 10, 10);
+			}
+		}
 		return new Projectile(x + width / 2, y, 10, 10);
 	}
 
